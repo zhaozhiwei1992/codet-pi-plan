@@ -1,0 +1,32 @@
+{
+  "name": "codet-pi-plan",
+  "version": "1.0.0",
+  "description": "Pi Coding Agent 扩展：/plan 只读探索影响面、在项目根目录生成 PLAN-<slug>.md，并自动进入 PLAN 状态按步执行（tool_call 拦截、before_agent_start 注入、[DONE:n] 进度）；/plan-end 退出",
+  "type": "module",
+  "main": "./extensions/plan-command.ts",
+  "exports": { ".": "./extensions/plan-command.ts" },
+  "keywords": ["pi-package", "pi-extension", "plan", "planning", "readonly"],
+  "license": "MIT",
+  "pi": {
+    "extensions": ["./extensions"],
+    "skills": ["./skills"]
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.83.0",
+    "typescript": "^5.8.3"
+  },
+  "engines": { "node": ">=18.0.0" },
+  "files": [
+    "extensions/",
+    "skills/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ]
+}
