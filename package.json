@@ -2,6 +2,7 @@
   "name": "codet-pi-plan",
   "version": "1.0.0",
   "description": "Pi Coding Agent 扩展：/plan 只读探索影响面、在项目根目录生成 PLAN-<slug>.md，并自动进入 PLAN 状态按步执行（tool_call 拦截、before_agent_start 注入、[DONE:n] 进度）；/plan-end 退出",
+  "repository": "https://github.com/zhaozhiwei1992/codet-pi-plan",
   "type": "module",
   "main": "./extensions/plan-command.ts",
   "exports": { ".": "./extensions/plan-command.ts" },

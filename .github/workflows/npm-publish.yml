@@ -1,0 +1,34 @@
+name: Publish to npm (sed rewrite)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write   # OIDC 必须
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          cache: "npm"
+
+      # 关键：CI 运行时替换私服地址为官方 registry
+      - name: Rewrite lockfile to public registry
+        run: |
+          sed -i 's|http://10.11.12.164:28081/repository/npm-group|https://registry.npmjs.org|g' package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - run: npm run typecheck
+
+      - run: npm publish --access public
